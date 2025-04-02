@@ -25,7 +25,7 @@ Route::get('create-admin', [AuthController::class, 'createAdminUser']);
 // Protected Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
-        return view('welcome');
+        return view('/home');
     });
 
     // Master Routes
@@ -46,3 +46,6 @@ Route::middleware(['auth'])->group(function () {
     // Additional Routes
     Route::get('work-orders/get-tender-details', [WorkOrderEntryController::class, 'getTenderDetails']);
 }); 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

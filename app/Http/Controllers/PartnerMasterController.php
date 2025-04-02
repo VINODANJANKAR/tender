@@ -10,12 +10,12 @@ class PartnerMasterController extends Controller
     public function index()
     {
         $partners = PartnerMaster::latest()->get();
-        return view('partner-master.index', compact('partners'));
+        return view('masters.partner.index', compact('partners'));
     }
 
     public function create()
     {
-        return view('partner-master.create');
+        return view('masters.partner.create');
     }
 
     public function store(Request $request)
@@ -37,7 +37,7 @@ class PartnerMasterController extends Controller
 
     public function edit(PartnerMaster $partner)
     {
-        return view('partner-master.edit', compact('partner'));
+        return view('masters.partner.edit', compact('partner'));
     }
 
     public function update(Request $request, PartnerMaster $partner)

@@ -10,12 +10,12 @@ class AccountHeadMasterController extends Controller
     public function index()
     {
         $accountHeads = AccountHeadMaster::latest()->get();
-        return view('account-head-master.index', compact('accountHeads'));
+        return view('masters.account-head.index', compact('accountHeads'));
     }
 
     public function create()
     {
-        return view('account-head-master.create');
+        return view('masters.account-head.create');
     }
 
     public function store(Request $request)
