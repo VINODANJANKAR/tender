@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TenderEntry;
 use App\Models\DepartmentMaster;
+use App\Models\PartnerMaster;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -20,7 +21,8 @@ class TenderEntryController extends Controller
         $currentDate = Carbon::now()->format('Y-m-d');
         $tenderNo = $this->generateTenderNo();
         $departments = DepartmentMaster::all();
-        return view('tender.create', compact('currentDate', 'tenderNo', 'departments'));
+        $partners = PartnerMaster::all();
+        return view('tender.create', compact('currentDate', 'tenderNo', 'departments', 'partners'));
     }
 
     public function store(Request $request)
@@ -79,18 +81,19 @@ class TenderEntryController extends Controller
 
     private function generateTenderNo()
     {
-        $year = Carbon::now()->year;
-        $lastTender = TenderEntry::whereYear('tender_date', $year)
+        // $year = Carbon::now()->year;
+        $lastTender = TenderEntry::select('tender_no')
             ->orderBy('tender_no', 'desc')
             ->first();
 
         if ($lastTender) {
             $lastNumber = intval(substr($lastTender->tender_no, -4));
-            $newNumber = str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
+            $newNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
         } else {
-            $newNumber = '0001';
+            $newNumber = '001';
         }
 
-        return $year . $newNumber;
+        return $newNumber;
     }
+    
 } 

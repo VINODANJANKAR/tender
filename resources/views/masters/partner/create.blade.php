@@ -12,23 +12,27 @@
         <div class="card-body">
             <form action="{{ route('partners.store') }}" method="POST">
                 @csrf
-                <div class="mb-3">
-                    <label for="partner_name" class="form-label">Partner Name</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="partner_name" class="form-label">Partner Name</label>
                     <input type="text" class="form-control @error('partner_name') is-invalid @enderror" 
                            id="partner_name" name="partner_name" value="{{ old('partner_name') }}" required>
                     @error('partner_name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="mobile_number" class="form-label">Mobile Number</label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="mobile_number" class="form-label">Mobile Number</label>
                     <input type="text" class="form-control @error('mobile_number') is-invalid @enderror" 
                            id="mobile_number" name="mobile_number" value="{{ old('mobile_number') }}" required>
                     @error('mobile_number')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
+                    </div>
+
                 </div>
+                
+
 
                 <button type="submit" class="btn btn-primary">Save Partner</button>
             </form>
