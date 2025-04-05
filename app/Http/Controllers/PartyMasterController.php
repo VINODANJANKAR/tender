@@ -10,12 +10,12 @@ class PartyMasterController extends Controller
     public function index()
     {
         $parties = PartyMaster::latest()->get();
-        return view('party-master.index', compact('parties'));
+        return view('masters.party.index', compact('parties'));
     }
 
     public function create()
     {
-        return view('party-master.create');
+        return view('masters.party.create');
     }
 
     public function store(Request $request)
