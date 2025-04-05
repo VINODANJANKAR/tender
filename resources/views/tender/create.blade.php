@@ -15,13 +15,13 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="sr_no" class="form-label">SR No</label>
-                        <input type="text" class="form-control" id="sr_no" name="sr_no" value="{{ $srNo }}" readonly>
+                        <input type="text" class="form-control" id="sr_no" name="sr_no" value="{{ $tenderNo }}" readonly>
                     </div>
 
                     <div class="col-md-4 mb-3">
                         <label for="entry_date" class="form-label">Entry Date</label>
                         <input type="date" class="form-control @error('entry_date') is-invalid @enderror" 
-                               id="entry_date" name="entry_date" value="{{ old('entry_date', date('Y-m-d')) }}" required>
+                               id="entry_date" name="entry_date" value="" required>
                         @error('entry_date')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -30,7 +30,7 @@
                     <div class="col-md-4 mb-3">
                         <label for="entry_year" class="form-label">Entry Year</label>
                         <input type="text" class="form-control @error('entry_year') is-invalid @enderror" 
-                               id="entry_year" name="entry_year" value="{{ old('entry_year', $entryYear) }}" required>
+                               id="entry_year" name="entry_year" value="" required>
                         @error('entry_year')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -40,7 +40,7 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="department_id" class="form-label">Name of Department</label>
-                        <select class="form-select @error('department_id') is-invalid @enderror" 
+                        <select class="form-control form-select @error('department_id') is-invalid @enderror" 
                                 id="department_id" name="department_id" required>
                             <option value="">Select Department</option>
                             @foreach($departments as $department)
@@ -120,7 +120,7 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="paid_by" class="form-label">Paid By</label>
-                                <select class="form-select @error('paid_by') is-invalid @enderror" 
+                                <select class="form-control form-select @error('paid_by') is-invalid @enderror" 
                                         id="paid_by" name="paid_by" required>
                                     <option value="">Select Partner</option>
                                     @foreach($partners as $partner)
@@ -253,6 +253,7 @@
                 });
             });
         });
+        
     </script>
     @endpush
 @endsection 
